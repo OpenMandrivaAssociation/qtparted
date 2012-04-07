@@ -11,7 +11,7 @@ Release:	0.%rel.1
 Source:		qtparted-%rel.tar.xz
 %else
 Release:	1
-Source:		http://freefr.dl.sourceforge.net/project/qtparted/qtparted-%version/qtparted-%version.tar.lz
+Source:		http://freefr.dl.sourceforge.net/project/qtparted/qtparted-%version/qtparted-%version.tar.xz
 %endif
 Source10:	qtparted.pamd
 Source11:	qtparted.pam
