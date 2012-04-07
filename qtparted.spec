@@ -19,7 +19,7 @@ License:	GPL
 Group:		System/Kernel and hardware
 Requires:	qtparted-data = %version-%release
 Provides:	%name-ui = %version-%release
-BuildRequires:	pkgconfig(QtCore) pkgconfig(QtGui) pkgconfig(libparted)
+BuildRequires:	pkgconfig(QtCore) pkgconfig(QtGui) pkgconfig(libparted) cmake
 
 %description
 QtParted is a graphical partition editor, similar to PartitionMagic(tm).
