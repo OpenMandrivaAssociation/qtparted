@@ -1,0 +1,4 @@
+USER=root
+PROGRAM=/usr/sbin/qtparted
+SESSION=true
+FALLBACK=true
