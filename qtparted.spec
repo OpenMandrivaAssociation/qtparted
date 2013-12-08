@@ -1,14 +1,17 @@
 %bcond_with qt_embedded
 %bcond_with kapabilities
 
+%define _enable_debug_packages %{nil}
+%define debug_package %{nil}
+
 Name:		qtparted
 Version:	0.6.0
-Release:	1
+Release:	2
 Summary:	Graphical Partitioning Tool
 License:	GPL
 Group:		System/Kernel and hardware
 URL:		http://qtparted.sf.net/
-Source:		http://freefr.dl.sourceforge.net/project/qtparted/qtparted-%version/qtparted-%version.tar.xz
+Source0:	http://freefr.dl.sourceforge.net/project/qtparted/qtparted-%version/qtparted-%version.tar.xz
 Source10:	qtparted.pamd
 Source11:	qtparted.pam
 Patch0:		qtparted-desktop.patch
