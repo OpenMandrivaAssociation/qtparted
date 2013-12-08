@@ -1,6 +1,9 @@
 %bcond_with qt_embedded
 %bcond_with kapabilities
 
+%define _enable_debug_packages %{nil}
+%define debug_package %{nil}
+
 Name:		qtparted
 Version:	0.6.0
 Release:	2
