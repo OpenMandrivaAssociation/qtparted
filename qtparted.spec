@@ -1,12 +1,11 @@
-%bcond_with qt_embedded
 %bcond_with kapabilities
 
 %define _enable_debug_packages %{nil}
 %define debug_package %{nil}
 
 Name:		qtparted
-Version:	0.6.0
-Release:	2
+Version:	0.7.0
+Release:	1
 Summary:	Graphical Partitioning Tool
 License:	GPL
 Group:		System/Kernel and hardware
@@ -16,56 +15,28 @@ Source10:	qtparted.pamd
 Source11:	qtparted.pam
 Patch0:		qtparted-desktop.patch
 BuildRequires:	cmake
-BuildRequires:	qt4-devel
+BuildRequires:	pkgconfig(Qt5Widgets)
+BuildRequires:	cmake(Qt5LinguistTools)
 BuildRequires:	pkgconfig(libparted)
-Requires:	qtparted-data = %{version}-%{release}
-Provides:	%{name}-ui = %{version}-%{release}
+# We obsolete -data and -nox for good, there's no need to do an
+# X11 vs. Qt/Embedded split anymore with Qt5, and that need won't
+# return. The dark ages are over :)
+Obsoletes:	qtparted-data
+Obsoletes:	qtparted-nox
 
 %description
 QtParted is a graphical partition editor, similar to PartitionMagic(tm).
 
-%package data
-Summary:	Data files common to qtparted and qtparted-nox
-Group:		System/Kernel and hardware
-BuildArch:	noarch
-Requires:	%{name}-ui = %{version}-%{release}
-
-%description data
-Data files common to qtparted and qtparted-nox.
-
-%package nox
-Summary:	A version of the QtParted partition editor that runs without X11
-Group:		System/Kernel and hardware
-Requires:	%{name}-data = %{version}-%{release}
-Provides:	%{name}-ui = %{version}-%{release}
-
-%description nox
-A version of the QtParted partition editor that runs without X11.
-
 %prep
 %setup -q
-%patch0 -p0
+%patch0 -p0 -b .desktop~
+%cmake -DCMAKE_INSTALL_PREFIX=%{_prefix}
 
 %build
-# Actual build happens in %%install so we can install 2 different copies
-# (linked against Qt-X11 and Qt-Embedded)
+%make -C build
 
 %install
-%if %{with qt_embedded}
-cmake -DQT_QMAKE_EXECUTABLE=%{_libdir}/qt4-embedded/bin/qmake -DQT_RPATH:BOOL=TRUE -DCMAKE_INSTALL_PREFIX=%{_prefix} .
-%make
-
-%makeinstall_std
-make clean
-find . -name "CMakeCache.txt" |xargs rm -f
-mv %{buildroot}%{_bindir}/%{name} %{buildroot}%{_bindir}/%{name}-nox
-%endif
-
-cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} .
-#cmake_qt4
-%make
-
-%makeinstall_std
+%makeinstall_std -C build
 
 %if %{with kapabilities}
 # pam/kapabilities support
@@ -87,13 +58,5 @@ install -m 644 -D %{SOURCE11} %{buildroot}%{_sysconfdir}/security/console.apps/q
 %endif
 %{_bindir}/*
 %{_datadir}/applications/*
-
-%files data
 %{_datadir}/%{name}
 %{_datadir}/pixmaps/*
-
-%if %{with qt_embedded}
-%files nox
-%{_sbindir}/qtparted-nox
-%endif
-
