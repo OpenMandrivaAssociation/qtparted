@@ -15,6 +15,7 @@ Source10:	qtparted.pamd
 Source11:	qtparted.pam
 Patch0:		qtparted-desktop.patch
 BuildRequires:	cmake
+BuildRequires:	qmake5
 BuildRequires:	pkgconfig(Qt5Widgets)
 BuildRequires:	cmake(Qt5LinguistTools)
 BuildRequires:	pkgconfig(libparted)
