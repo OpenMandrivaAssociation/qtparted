@@ -5,7 +5,7 @@
 
 Name:		qtparted
 Version:	0.7.0
-Release:	3
+Release:	4
 Summary:	Graphical Partitioning Tool
 License:	GPL
 Group:		System/Kernel and hardware
