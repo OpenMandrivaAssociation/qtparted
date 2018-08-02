@@ -2,8 +2,6 @@
 
 %define _enable_debug_packages %{nil}
 %define debug_package %{nil}
-%define _disable_ld_no_undefined 1
-%define _disable_lto 1
 
 Name:		qtparted
 Version:	0.7.0
