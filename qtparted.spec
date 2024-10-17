@@ -9,7 +9,7 @@ Release:	7
 Summary:	Graphical Partitioning Tool
 License:	GPL
 Group:		System/Kernel and hardware
-URL:		http://qtparted.sf.net/
+URL:		https://qtparted.sf.net/
 Source0:	http://freefr.dl.sourceforge.net/project/qtparted/qtparted-%version/qtparted-%version.tar.xz
 Source10:	qtparted.pamd
 Source11:	qtparted.pam
